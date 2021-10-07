@@ -1,0 +1,4 @@
+.homeComponent__products-list{
+    display:flex;
+    overflow:auto;
+}
