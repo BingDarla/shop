@@ -10,6 +10,11 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 16px;
+    padding: 8px 16px;
     font-size: 32px;
+}
+
+.productCardComponent__tag {
+    font-size: 20px;
+    padding: 4px 32px;
 }

@@ -9,6 +9,7 @@ export interface ProductProps {
     title: string;
     price: number;
     image: string;
+    logo: string;
 }
 
 const ProductCard: React.FC<{ product: ProductProps }> = props => {
@@ -38,9 +39,9 @@ const ProductCard: React.FC<{ product: ProductProps }> = props => {
     return (
         <div className="productCardComponent">
             {productImage}
-            <div className="productCardComponent__Info">
-                <span className="productCardComponent__title">{product.title}</span>
-                <span className="productCardComponent__price">{`$ ${product.price}`}</span>
+            <div className="productCardComponent__info">
+                <span className="productCardComponent__tag">{product.title}</span>
+                <span className="productCardComponent__tag">{`$ ${product.price}`}</span>
             </div>
             <Button variant="contained" onClick={onClick} endIcon={<AddShoppingCartIcon />}>
                 ADD

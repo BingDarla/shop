@@ -4,6 +4,8 @@ import { ProductProps } from '../components/productCardComponent/productCardComp
 export interface CartContextInterface {
     list: ProductProps[];
     addToCart?: (newItem: ProductProps) => void;
+    emptyCart?: () => void;
+    remove?: (product: ProductProps) => void;
 }
 
 export const CartContext = createContext<CartContextInterface>({
@@ -16,8 +18,18 @@ const CartProvider: React.FC = ({ children }) => {
         (newItem: ProductProps) => setList(prevList => [...prevList, newItem]),
         []
     );
+    const emptyCart = useCallback(() => setList([]), []);
 
-    return <CartContext.Provider value={{ list, addToCart }}>{children}</CartContext.Provider>;
+    const remove = useCallback(
+        (product: ProductProps) => setList([...list].filter(item => item.title !== product.title)),
+        [list]
+    );
+
+    return (
+        <CartContext.Provider value={{ list, addToCart, emptyCart, remove }}>
+            {children}
+        </CartContext.Provider>
+    );
 };
 
 export default CartProvider;
