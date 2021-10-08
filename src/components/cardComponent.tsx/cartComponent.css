@@ -1,0 +1,22 @@
+.cardComponent {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    transform: translateX(0);
+    z-index: 100;
+    background-color: white;
+    width: 400px;
+}
+
+.cardComponent--visible {
+    transform: translateX(-400px);
+}
+
+.cartComponent__empty {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 40px;
+}

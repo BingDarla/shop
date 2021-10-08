@@ -1,11 +1,15 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './components/routeComponent/routeConponent';
+import CartProvider from './context/cartContext';
+
 const App = () => {
     return (
         <div className="App">
             <BrowserRouter>
-                <Routes />
+                <CartProvider>
+                    <Routes />
+                </CartProvider>
             </BrowserRouter>
         </div>
     );

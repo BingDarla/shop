@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { Button } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useProductList from '../../hooks/useProductList';
+import Cart from '../cardComponent.tsx/cardComponent';
 import ProductCard from '../productCardComponent/productCardComponent';
 import './homeComponent.css';
 
@@ -11,8 +14,17 @@ const Home = () => {
         <main className="homeComponent">
             <div className="homeComponent__heading">
                 <h1>Online Shop</h1>
-                <button onClick={() => setIsCartClicked(!isCartClicked)}>CART</button>
-                {isCartClicked && <div>card display</div>}
+                <Button
+                    variant="contained"
+                    onClick={() => setIsCartClicked(!isCartClicked)}
+                    startIcon={<ShoppingCartIcon />}
+                >
+                    CART
+                </Button>
+
+                {isCartClicked && (
+                    <Cart isClicked={isCartClicked} onClose={() => setIsCartClicked(false)} />
+                )}
             </div>
             <div className="homeComponent__products">
                 {isLoading ? (
