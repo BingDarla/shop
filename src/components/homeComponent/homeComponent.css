@@ -1,4 +1,14 @@
-.homeComponent__products-list{
-    display:flex;
-    overflow:auto;
+.homeComponent__heading {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+}
+
+.homeComponent__products-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.homeComponent__products-li {
+  list-style: none;
 }
