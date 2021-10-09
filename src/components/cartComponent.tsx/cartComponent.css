@@ -8,6 +8,7 @@
     z-index: 100;
     background-color: white;
     width: 400px;
+    padding-right: 16px;
 }
 
 .cartComponent__header {

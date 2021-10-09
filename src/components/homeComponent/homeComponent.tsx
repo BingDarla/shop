@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Button } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useProductList from '../../hooks/useProductList';
@@ -6,18 +6,24 @@ import Cart from '../cartComponent.tsx/cartComponent';
 import ProductCard from '../productCardComponent/productCardComponent';
 import './homeComponent.css';
 import { useCartContext } from '../../context/cartContext';
+import classNames from 'classnames';
 
 const Home = () => {
     const { productList, isLoading } = useProductList();
     const { list } = useCartContext();
     const [isCartClicked, setIsCartClicked] = useState<boolean>(false);
+    const homeClass = useMemo(
+        () => classNames('homeComponent', { '--withCart': isCartClicked }),
+        [isCartClicked]
+    );
 
     return (
-        <main className="homeComponent">
+        <main className={homeClass}>
             <div className="homeComponent__heading">
                 <h1>Online Shop</h1>
                 {Boolean(list.length) && (
                     <Button
+                        className="homeComponent__cart"
                         variant="contained"
                         onClick={() => setIsCartClicked(!isCartClicked)}
                         startIcon={<ShoppingCartIcon />}

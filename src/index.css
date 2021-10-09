@@ -4,3 +4,7 @@ body {
     font-family: Roboto;
     background-color: bisque;
 }
+
+* {
+    box-sizing: border-box;
+}

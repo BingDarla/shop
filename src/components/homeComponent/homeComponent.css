@@ -1,14 +1,28 @@
+.--withCart {
+    padding-right: 400px;
+}
+
 .homeComponent__heading {
-  width: 100%;
-  text-align: center;
-  padding: 20px;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.homeComponent__heading h1 {
+    width: 50%;
 }
 
 .homeComponent__products-list {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .homeComponent__products-li {
-  list-style: none;
+    list-style: none;
+}
+
+.homeComponent__cart.homeComponent__cart {
+    position: fixed;
+    top: 40px;
+    right: 450px;
 }

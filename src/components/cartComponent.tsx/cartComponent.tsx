@@ -1,5 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
-import classNames from 'classnames';
+import React, { useCallback } from 'react';
 import './cartComponent.css';
 import { useCartContext } from '../../context/cartContext';
 import Button from '@mui/material/Button';
@@ -11,10 +10,6 @@ import { useHistory } from 'react-router';
 import { putOrder } from '../../service/apiService';
 
 const Cart: React.FC<{ isClicked: boolean; onClose: () => void }> = ({ isClicked, onClose }) => {
-    const cartClass = useMemo(
-        () => classNames('cartComponent', { '--visible': isClicked }),
-        [isClicked]
-    );
     const { list, subTotal, onUpdateToll, toll } = useCartContext();
     const history = useHistory();
 
@@ -28,7 +23,7 @@ const Cart: React.FC<{ isClicked: boolean; onClose: () => void }> = ({ isClicked
     }, [history, list]);
 
     return (
-        <div className={cartClass}>
+        <div className="cartComponent">
             <div className="cartComponent__header">
                 <span>Cart Summary</span>
                 <IconButton onClick={onClose} aria-label="close">
@@ -50,7 +45,11 @@ const Cart: React.FC<{ isClicked: boolean; onClose: () => void }> = ({ isClicked
             </div>
             {Boolean(subTotal) && (
                 <div className="u-info">
-                    <span className="u-tag">Subtotal (Excludes delivery)</span>
+                    <div className="u-flex-column">
+                        <span className="u-tag">Subtotal </span>
+                        <span className="u-tag-small">(Excludes delivery)</span>
+                    </div>
+
                     <span className="u-tag">{`$${subTotal}`}</span>
                 </div>
             )}
