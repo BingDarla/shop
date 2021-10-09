@@ -7,7 +7,7 @@ export interface CartContextInterface {
     subTotal?: number;
     toll?: number;
     addToCart?: (newItem: ProductProps) => void;
-    emptyCart?: () => void;
+    reset?: () => void;
     remove?: (product: ProductProps) => void;
     hasAdded?: (product: ProductProps) => boolean;
     onUpdateToll?: () => void;
@@ -27,7 +27,12 @@ const CartProvider: React.FC = ({ children }) => {
         setSubTotal(prevSubTotal => prevSubTotal + newItem.price);
         setToll(0);
     }, []);
-    const emptyCart = useCallback(() => setList([]), []);
+
+    const reset = useCallback(() => {
+        setList([]);
+        setSubTotal(0);
+        setToll(0);
+    }, []);
 
     const remove = useCallback(
         (product: ProductProps) => {
@@ -54,7 +59,7 @@ const CartProvider: React.FC = ({ children }) => {
             value={{
                 list,
                 addToCart,
-                emptyCart,
+                reset,
                 remove,
                 hasAdded,
                 subTotal,
