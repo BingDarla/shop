@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import classNames from 'classnames';
 import { Button } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useProductList from '../../hooks/useProductList';
 import Cart from '../cartComponent.tsx/cartComponent';
 import ProductCard from '../productCardComponent/productCardComponent';
-import './homeComponent.css';
 import { useCartContext } from '../../context/cartContext';
-import classNames from 'classnames';
+import './homeComponent.css';
 
 const Home = () => {
     const { productList, isLoading } = useProductList();

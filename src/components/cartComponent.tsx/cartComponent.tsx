@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
-import './cartComponent.css';
-import { useCartContext } from '../../context/cartContext';
+import { useHistory } from 'react-router';
 import Button from '@mui/material/Button';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import { useCartContext } from '../../context/cartContext';
 import CartCard from '../cartCardComponent/cartCardComponent';
-import { useHistory } from 'react-router';
 import { putOrder } from '../../service/apiService';
+import './cartComponent.css';
 
 const Cart: React.FC<{ isClicked: boolean; onClose: () => void }> = ({ isClicked, onClose }) => {
     const { list, subTotal, onUpdateToll, toll } = useCartContext();
