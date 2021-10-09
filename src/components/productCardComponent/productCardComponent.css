@@ -5,16 +5,3 @@
     align-items: center;
     padding: 16px;
 }
-
-.productCardComponent__info {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 16px;
-    font-size: 32px;
-}
-
-.productCardComponent__tag {
-    font-size: 20px;
-    padding: 4px 32px;
-}

@@ -5,22 +5,26 @@ import useProductList from '../../hooks/useProductList';
 import Cart from '../cartComponent.tsx/cartComponent';
 import ProductCard from '../productCardComponent/productCardComponent';
 import './homeComponent.css';
+import { useCartContext } from '../../context/cartContext';
 
 const Home = () => {
     const { productList, isLoading } = useProductList();
+    const { list } = useCartContext();
     const [isCartClicked, setIsCartClicked] = useState<boolean>(false);
 
     return (
         <main className="homeComponent">
             <div className="homeComponent__heading">
                 <h1>Online Shop</h1>
-                <Button
-                    variant="contained"
-                    onClick={() => setIsCartClicked(!isCartClicked)}
-                    startIcon={<ShoppingCartIcon />}
-                >
-                    CART
-                </Button>
+                {Boolean(list.length) && (
+                    <Button
+                        variant="contained"
+                        onClick={() => setIsCartClicked(!isCartClicked)}
+                        startIcon={<ShoppingCartIcon />}
+                    >
+                        CART
+                    </Button>
+                )}
 
                 {isCartClicked && (
                     <Cart isClicked={isCartClicked} onClose={() => setIsCartClicked(false)} />

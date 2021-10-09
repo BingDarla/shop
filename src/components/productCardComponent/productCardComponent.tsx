@@ -25,7 +25,7 @@ const ProductCard: React.FC<{ product: ProductProps }> = props => {
         [product]
     );
 
-    const { addToCart } = useCartContext();
+    const { addToCart, hasAdded } = useCartContext();
     const onClick = useCallback(
         (event: any) => {
             if (addToCart) {
@@ -39,11 +39,16 @@ const ProductCard: React.FC<{ product: ProductProps }> = props => {
     return (
         <div className="productCardComponent">
             {productImage}
-            <div className="productCardComponent__info">
-                <span className="productCardComponent__tag">{product.title}</span>
-                <span className="productCardComponent__tag">{`$ ${product.price}`}</span>
+            <div className="u-info">
+                <span className="u-tag">{product.title}</span>
+                <span className="u-tag">{`$ ${product.price}`}</span>
             </div>
-            <Button variant="contained" onClick={onClick} endIcon={<AddShoppingCartIcon />}>
+            <Button
+                variant="contained"
+                onClick={onClick}
+                endIcon={<AddShoppingCartIcon />}
+                disabled={hasAdded && hasAdded(product)}
+            >
                 ADD
             </Button>
         </div>

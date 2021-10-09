@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import './cartComponent.css';
 import { useCartContext } from '../../context/cartContext';
@@ -7,13 +7,25 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CartCard from '../cartCardComponent/cartCardComponent';
+import { useHistory } from 'react-router';
+import { putOrder } from '../../service/apiService';
 
 const Cart: React.FC<{ isClicked: boolean; onClose: () => void }> = ({ isClicked, onClose }) => {
     const cartClass = useMemo(
         () => classNames('cartComponent', { '--visible': isClicked }),
         [isClicked]
     );
-    const { list } = useCartContext();
+    const { list, subTotal, onUpdateToll, toll } = useCartContext();
+    const history = useHistory();
+
+    const onSubmit = useCallback(async () => {
+        try {
+            await putOrder(list);
+            history.push('./success');
+        } catch {
+            console.log('error in putting order');
+        }
+    }, [history, list]);
 
     return (
         <div className={cartClass}>
@@ -36,13 +48,33 @@ const Cart: React.FC<{ isClicked: boolean; onClose: () => void }> = ({ isClicked
                     <div className="cartComponent__empty">Your cart is empty</div>
                 )}
             </div>
+            {Boolean(subTotal) && (
+                <div className="u-info">
+                    <span className="u-tag">Subtotal (Excludes delivery)</span>
+                    <span className="u-tag">{`$${subTotal}`}</span>
+                </div>
+            )}
+            {Boolean(toll) && (
+                <div className="u-info">
+                    <span className="u-tag">Toll</span>
+                    <span className="u-tag">{`$${toll}`}</span>
+                </div>
+            )}
 
-            <div className="cartComponent__actions">
-                <Button variant="contained" startIcon={<LocalShippingIcon />}>
-                    Calculate Toll
-                </Button>
-                <Button variant="contained">Order</Button>
-            </div>
+            {Boolean(list.length) && (
+                <div className="cartComponent__actions">
+                    <Button
+                        variant="contained"
+                        onClick={onUpdateToll}
+                        startIcon={<LocalShippingIcon />}
+                    >
+                        Toll Calculate
+                    </Button>
+                    <Button variant="contained" onClick={onSubmit} disabled={!toll}>
+                        Order
+                    </Button>
+                </div>
+            )}
         </div>
     );
 };
