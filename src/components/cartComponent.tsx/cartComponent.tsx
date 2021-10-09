@@ -10,17 +10,18 @@ import { putOrder } from '../../service/apiService';
 import './cartComponent.css';
 
 const Cart: React.FC<{ isClicked: boolean; onClose: () => void }> = ({ isClicked, onClose }) => {
-    const { list, subTotal, onUpdateToll, toll } = useCartContext();
+    const { list, subTotal, onUpdateToll, toll, emptyCart } = useCartContext();
     const history = useHistory();
 
     const onSubmit = useCallback(async () => {
         try {
             await putOrder(list);
+            emptyCart && emptyCart();
             history.push('./success');
         } catch {
             console.log('error in putting order');
         }
-    }, [history, list]);
+    }, [emptyCart, history, list]);
 
     return (
         <div className="cartComponent">

@@ -19,3 +19,12 @@
     padding: 30px;
     font-size: 20px;
 }
+
+@media only screen and (max-width: 540px) {
+    .cartCardComponent {
+        padding: 0;
+    }
+    .cartCardComponent__image {
+        padding: 4px;
+    }
+}

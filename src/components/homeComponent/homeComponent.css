@@ -9,7 +9,7 @@
 }
 
 .homeComponent__heading h1 {
-    width: 50%;
+    width: 50vw;
 }
 
 .homeComponent__products-list {
@@ -25,4 +25,27 @@
     position: fixed;
     top: 40px;
     right: 450px;
+}
+
+@media only screen and (max-width: 540px) {
+    .--withCart {
+        padding-right: 0;
+    }
+
+    .homeComponent__products-list {
+        padding: 0;
+    }
+
+    .homeComponent__cart.homeComponent__cart {
+        right: 16px;
+    }
+
+    .homeComponent__products-li {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .homeComponent__heading h1 {
+        width: 70vw;
+    }
 }
