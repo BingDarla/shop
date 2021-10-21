@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Button } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useProductList from '../../hooks/useProductList';
-import Cart from '../cartComponent.tsx/cartComponent';
+import Cart from '../cartComponent/cartComponent';
 import ProductCard from '../productCardComponent/productCardComponent';
 import { useCartContext } from '../../context/cartContext';
 import './homeComponent.css';
